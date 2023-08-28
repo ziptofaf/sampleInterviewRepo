@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_28_070108) do
+ActiveRecord::Schema.define(version: 2023_08_28_075045) do
+
+  create_table "daily_metrics", force: :cascade do |t|
+    t.integer "team_id", null: false
+    t.integer "tasks_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.date "day"
+    t.index ["team_id"], name: "index_daily_metrics_on_team_id"
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.integer "team_id"
@@ -26,5 +35,6 @@ ActiveRecord::Schema.define(version: 2023_08_28_070108) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "daily_metrics", "teams"
   add_foreign_key "tasks", "teams"
 end
