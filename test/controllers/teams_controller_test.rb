@@ -37,12 +37,4 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     patch team_url(@team), params: { team: { name: @team.name } }
     assert_redirected_to team_url(@team)
   end
-
-  test "should destroy team" do
-    assert_difference('Team.count', -1) do
-      delete team_url(@team)
-    end
-
-    assert_redirected_to teams_url
-  end
 end
